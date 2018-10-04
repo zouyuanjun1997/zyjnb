@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{margin: 0;padding: 0;}
+			#kuang{width: 800px;height: 500px;border: 1px solid #000;margin: 50px auto;position: relative;font-size: 100px;text-align: center;line-height: 500px;}
+			#kuang>div{width: 20px;height: 20px;background: green;position: absolute;border-radius: 8px;}
+			span{display: block;position: absolute;width: 20px;height: 20px;background: red;border-radius: 10px;}
+		</style>
+	</head>
+	<body>
+		<div id="kuang">
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+			<div></div>
+		</div>
+		
+		<script type="text/javascript">
+			var okuang = document.getElementById("kuang");
+			var odiv = document.getElementsByTagName("div");
+			
+			var timerTop = null;
+			var timerRight = null;
+			var timerBottom = null;
+			var timerLeft = null;
+			
+			var timerRight = setInterval(function(){
+				for(var i=odiv.length-1;i>1;i--){
+					odiv[i].style.top = odiv[i-1].style.top;
+					odiv[i].style.left = odiv[i-1].style.left;
+				}	
+				odiv[1].style.left = odiv[1].offsetLeft + 10 +"px";
+			},50)
+			document.onkeydown = function(e){
+				var evt = e || event;
+				console.log(evt.keyCode)
+				if(evt.keyCode == 37){
+					clearInterval(timerRight);
+					clearInterval(timerTop);
+					clearInterval(timerBottom);
+					clearInterval(timerLeft);
+					timerLeft = setInterval(function(){
+						
+						//符合条件时 ，改变红球位置 ， 蛇身长加一。	
+						while(odiv[1].offsetLeft >= ospan.offsetLeft-20 && odiv[1].offsetLeft <= ospan.offsetLeft+20 && odiv[1].offsetTop >= ospan.offsetTop-20 && odiv[1].offsetTop <= ospan.offsetTop +20 ){
+								ospan.style.top = Math.floor(Math.random()*481) + "px";
+								ospan.style.left = Math.floor(Math.random()*781) + "px";
+								var zdiv = document.createElement("div");
+								okuang.appendChild(zdiv);
+								
+							}
+						
+						if(odiv[1].offsetLeft<=0){
+							for(var i=odiv.length-1;i>=1;i--){
+								odiv[i].style.display = "none";
+							}
+							okuang.innerHTML = "Game Over";
+							clearInterval(timerLeft);
+						}
+						for(var i=odiv.length-1;i>1;i--){
+							odiv[i].style.top = odiv[i-1].style.top;
+							odiv[i].style.left = odiv[i-1].style.left;
+						}	
+						odiv[1].style.left = odiv[1].offsetLeft - 10 +"px";
+						
+						},50)
+				}
+				if(evt.keyCode == 38){
+					clearInterval(timerRight);
+					clearInterval(timerLeft);
+					clearInterval(timerBottom);
+					clearInterval(timerTop);
+					timerTop = setInterval(function(){
+						
+						while(odiv[1].offsetLeft >= ospan.offsetLeft-20 && odiv[1].offsetLeft <= ospan.offsetLeft+20 && odiv[1].offsetTop >= ospan.offsetTop-20 && odiv[1].offsetTop <= ospan.offsetTop +20 ){
+							ospan.style.top = Math.floor(Math.random()*481) + "px";
+							ospan.style.left = Math.floor(Math.random()*781) + "px";
+							var zdiv = document.createElement("div");
+							okuang.appendChild(zdiv);
+							
+						}
+						if(odiv[1].offsetTop<=0){
+							for(var i=odiv.length-1;i>=1;i--){
+								odiv[i].style.display = "none";
+							}
+							okuang.innerHTML = "Game Over";
+							clearInterval(timerTop);
+						}
+						for(var i=odiv.length-1;i>1;i--){
+							odiv[i].style.top = odiv[i-1].style.top;
+							odiv[i].style.left = odiv[i-1].style.left;
+						}	
+						odiv[1].style.top = odiv[1].offsetTop - 10 +"px";
+						
+					},50)
+				}
+				if(evt.keyCode == 39){
+					clearInterval(timerLeft);
+					clearInterval(timerTop);
+					clearInterval(timerBottom);
+					clearInterval(timerRight);
+					timerRight = setInterval(function(){
+						
+						while(odiv[1].offsetLeft >= ospan.offsetLeft-20 && odiv[1].offsetLeft <= ospan.offsetLeft+20 && odiv[1].offsetTop >= ospan.offsetTop-20 && odiv[1].offsetTop <= ospan.offsetTop +20 ){
+							ospan.style.top = Math.floor(Math.random()*481) + "px";
+							ospan.style.left = Math.floor(Math.random()*781) + "px";
+							var zdiv = document.createElement("div");
+							okuang.appendChild(zdiv);
+							
+						}
+						if(odiv[1].offsetLeft >= 780){
+							for(var i=odiv.length-1;i>=1;i--){
+								odiv[i].style.display = "none";
+							}
+							okuang.innerHTML = "Game Over";
+							clearInterval(timerRight);
+						}
+						for(var i=odiv.length-1;i>1;i--){
+							odiv[i].style.top = odiv[i-1].style.top;
+							odiv[i].style.left = odiv[i-1].style.left;
+						}	
+						odiv[1].style.left = odiv[1].offsetLeft + 10 +"px";
+					},50)
+				}
+				if(evt.keyCode == 40){
+					clearInterval(timerRight);
+					clearInterval(timerTop);
+					clearInterval(timerLeft);
+					clearInterval(timerBottom);
+					timerBottom = setInterval(function(){
+						
+						
+						while(odiv[1].offsetLeft >= ospan.offsetLeft-20 && odiv[1].offsetLeft <= ospan.offsetLeft+20 && odiv[1].offsetTop >= ospan.offsetTop-20 && odiv[1].offsetTop <= ospan.offsetTop +20 ){
+							ospan.style.top = Math.floor(Math.random()*481) + "px";
+							ospan.style.left = Math.floor(Math.random()*781) + "px";
+							var zdiv = document.createElement("div");
+							okuang.appendChild(zdiv);
+							
+						}
+						if(odiv[1].offsetTop >= 480){
+							for(var i=odiv.length-1;i>=1;i--){
+								odiv[i].style.display = "none";
+							}
+							okuang.innerHTML = "Game Over";
+							
+							clearInterval(timerBottom);
+						}
+						for(var i=odiv.length-1;i>1;i--){
+							odiv[i].style.top = odiv[i-1].style.top;
+							odiv[i].style.left = odiv[i-1].style.left;
+						}	
+						odiv[1].style.top = odiv[1].offsetTop + 10 +"px";
+						
+					},50)
+				}
+//				while(odiv[1].offsetLeft >= ospan.offsetLeft-20 && odiv[1].offsetLeft <= ospan.offsetLeft+20 && odiv[1].offsetTop >= ospan.offsetTop-20 && odiv[1].offsetTop <= ospan.offsetTop +20 ){
+//					ospan.style.top = Math.floor(Math.random()*481) + "px";
+//					ospan.style.left = Math.floor(Math.random()*781) + "px";
+//					var zdiv = document.createElement("div");
+//					okuang.appendChild(zdiv);
+//					
+//				}
+				
+				
+			}
+			
+			var ospan = document.createElement("span");
+			okuang.appendChild(ospan);
+			ospan.style.top = Math.floor(Math.random()*481) + "px";
+			ospan.style.left = Math.floor(Math.random()*781) + "px";
+			
+			
+		</script>
+	</body>
+</html>
